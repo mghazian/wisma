@@ -1,0 +1,15 @@
+/*****************************************
+    VIEW KAMAR_KOSONG - Adetiya Bagus Nusantara
+ *****************************************/
+CREATE VIEW view_Unoccupied AS
+SELECT w.nama_wisma, k.id_kategori, k.no_kamar, k.status_kamar
+FROM kamar k, wisma w
+WHERE w.id_wisma=k.id_wisma and k.status_kamar='Kosong';
+
+
+/*****************************************
+    INDEX WISMA- Adetiya Bagus Nusantara
+ *****************************************/
+create index index_wisma
+on wisma (id_wisma, nama_wisma);
+
