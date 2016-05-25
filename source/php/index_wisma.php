@@ -2,7 +2,7 @@
 	require_once 'common.php';
 
 	$query = "SELECT * FROM WISMA";
-	$result = dispatchQuery (connectToDatabase ('mbd2016', 'mbd2016'), $query);
+	$result = dispatchQuery (connectToDatabase ('FP_MBD', 'FP_MBD'), $query);
 ?>
 
 <html>

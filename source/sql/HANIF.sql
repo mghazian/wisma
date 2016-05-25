@@ -3,7 +3,7 @@
     Menampilkan kamar beserta kategori, kapasitas dan harga
  *****************************************/
 
-CREATE VIEW ROOM_CATEGORY_FACILITY_CAPACITY AS
+CREATE VIEW ROOM_CATEGORY AS
 SELECT K.NO_KAMAR ,K.STATUS_KAMAR, I.ID_KATEGORI, I.HARGA, I.KAPASITAS
 FROM KAMAR K, KATEGORI I
 WHERE K.ID_KATEGORI=I.ID_KATEGORI;

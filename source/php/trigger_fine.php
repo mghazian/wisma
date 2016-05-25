@@ -10,13 +10,6 @@
 		$query = "UPDATE RESERVASI SET TANGGAL_CHECK_OUT = SYSDATE WHERE ID_RESERVASI = " . $_POST['id_reservasi'];
 		dispatchQuery ($connection, $query);
 
-		//	FIXME: DELETE THIS
-		if (!empty ($_POST['id_reservasi']))
-		{
-			$query = "UPDATE KAMAR SET STATUS_KAMAR = 'Kosong' WHERE NO_KAMAR = " . $_POST['no_kamar'];
-			dispatchQuery ($connection, $query);
-		}
-
 		$isConfirming = false;
 	}
 
@@ -89,8 +82,39 @@
 	</table>
 	<form method='POST' action='trigger_fine.php'>
 		<input type='hidden' name='id_reservasi' value=<?php echo $data->ID_RESERVASI; ?> />
-		<input type='hidden' name='no_kamar' value=<?php echo $data->NO_KAMAR; ?> /><!--FIXME: DELETE THIS-->
 		<input type='submit' value='Confirm' />
 	</form>
+	<?php } ?>
+	<?php if (!empty ($_POST['id_reservasi'])) {
+		$query = "SELECT * FROM RESERVASI WHERE ID_RESERVASI = " . $_POST['id_reservasi'];
+		$result = dispatchQuery ($connection, $query);
+		$data = oci_fetch_object($result);
+	?>
+	<table>
+		<tr>
+			<td>ID Reservasi</td>
+			<td><?php echo $data->ID_RESERVASI; ?></td>
+		</tr>
+		<tr>
+			<td>NO KTP Peminjam</td>
+			<td><?php echo $data->NO_KTP; ?></td>
+		</tr>
+		<tr>
+			<td>Jangka Waktu Peminjaman Terdaftar</td>
+			<td><?php echo $data->LAMA_PEMINJAMAN; ?></td>
+		</tr>
+		<tr>
+			<td>Tanggal Check In</td>
+			<td><?php echo $data->TANGGAL_CHECK_IN; ?></td>
+		</tr>
+		<tr>
+			<td>Tanggal Check Out</td>
+			<td><?php echo $data->TANGGAL_CHECK_OUT; ?></td>
+		</tr>
+		<tr>
+			<td>Denda</td>
+			<td><?php echo $data->DENDA; ?></td>
+		</tr>
+	</table>
 	<?php } ?>
 </body>
